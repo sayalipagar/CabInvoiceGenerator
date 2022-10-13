@@ -20,7 +20,17 @@ namespace CabInvoiceGenerator
                 this.cabFare = (distance * COST_PER_KILOMETER) + (time * COST_PER_MINUTE);
                 return Math.Max(this.cabFare, MINIMUM_FARE);
             }
+        //UC2 - Multiple Rides
+        public double GetMultipleRideFare(Ride[] rides)
+        {
+            double totalRideFare = 0.0;
+            foreach (Ride ride in rides)
+            {
+                totalRideFare += this.CalculatFare(ride.rideDistance, ride.rideTime);
+            }
+            return totalRideFare;
         }
+    }
     }
        
 

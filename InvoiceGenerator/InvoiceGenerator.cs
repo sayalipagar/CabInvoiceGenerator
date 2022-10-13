@@ -30,6 +30,16 @@ namespace CabInvoiceGenerator
             }
             return totalRideFare;
         }
+        //UC3 - Enhanced Invoice
+        public InvoiceSummary GetAverageFare(Ride[] rides)
+        {
+            double totalRideFare = 0.0;
+            foreach (Ride ride in rides)
+            {
+                totalRideFare += this.CalculatFare(ride.rideDistance, ride.rideTime);
+            }
+            return new InvoiceSummary(totalRideFare, rides.Length);
+        }
     }
     }
        
